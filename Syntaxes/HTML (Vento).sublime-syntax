@@ -1,0 +1,46 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: HTML (Vento)
+scope: text.html.vento
+version: 2
+extends: Packages/HTML/HTML.sublime-syntax
+file_extensions: [vto, html.vto]
+
+contexts:
+  prototype:
+  - meta_prepend: true
+  - include: scope:text.plain.vento
+
+  main:
+  - meta_include_prototype: false
+  - meta_scope: meta.template.vento
+  - match: ''
+    set:
+    - html
+    - frontmatter
+
+  frontmatter:
+  - meta_include_prototype: false
+  - match: \s*(---)\s*\n
+    captures:
+      0: meta.frontmatter.eleventy
+      1: punctuation.section.frontmatter.begin.eleventy
+    embed: scope:source.yaml
+    embed_scope: meta.frontmatter.eleventy source.yaml.embedded.eleventy
+    escape: ^\s*(---)\s*$\n?
+    escape_captures:
+      0: meta.frontmatter.eleventy
+      1: punctuation.section.frontmatter.end.eleventy
+    pop: true
+  - match: ''
+    pop: true
+
+  cdata-content:
+  - meta_prepend: true
+  - meta_include_prototype: false
+  - include: scope:text.plain.vento
+
+  tag-attribute-value-content:
+  - meta_prepend: true
+  - include: scope:text.plain.vento
