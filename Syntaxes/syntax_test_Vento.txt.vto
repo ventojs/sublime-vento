@@ -1,0 +1,277 @@
+{{# SYNTAX TEST "Packages/sublime-vento/Syntaxes/Vento.sublime-syntax" #}}
+
+    {{# comment #}}
+{{# ^^^^^^^^^^^^^^^ comment.block.vento #}}
+{{# ^^^ punctuation.definition.comment.begin.vento #}}
+{{#             ^^^ punctuation.definition.comment.end.vento #}}
+
+    {{#- {{ foo }} #} -#}}
+{{# ^^^^^^^^^^^^^^^^^^ comment.block.vento #}}
+{{# ^^^^ punctuation.definition.comment.begin.vento #}}
+{{#     ^^^^^^^^^^^^^^ comment.block.vento -punctuation #}}
+{{#                   ^^^^ punctuation.definition.comment.end.vento #}}
+
+    {{#
+    comment -#}}
+{{# ^^^^^^^^^^^^ comment.block.vento #}}
+{{#         ^^^^ punctuation.definition.comment.end.vento #}}
+
+    {{#-#}}
+{{# ^^^^^^^ comment.block.vento #}}
+{{# ^^^^ punctuation.definition.comment.begin.vento #}}
+{{#     ^^^ punctuation.definition.comment.end.vento #}}
+
+    {{> const foo = 'bar' }}
+{{# ^^^ punctuation.definition.code.begin #}}
+{{#     ^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                       ^^ punctuation.definition.code.end.vento #}}
+
+    {{>
+    const foo = 23 -}}
+{{# ^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                ^^^ punctuation.definition.code.end.vento -source.js #}}
+
+    {{> /* }} */ }}
+{{# ^^^ punctuation.definition.code.begin #}}
+{{#     ^^^^^^^^ source.js.embedded.vento #}}
+{{#        ^^ -punctuation #}}
+{{#              ^^ punctuation.definition.code.end.vento #}}
+
+    {{ echo }}{{ echo }}{{ /echo }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^ keyword.declaration.echo.begin.vento #}}
+{{#         ^^ punctuation.definition.tag.end.vento #}}
+{{#           ^^^^^^^^^^ text.plain.vento -keyword.echo.vento #}}
+{{#                     ^^ punctuation.definition.tag.begin.vento #}}
+{{#                        ^ punctuation.section.tag.end.vento #}}
+{{#                        ^^^^^ keyword.declaration.echo.end.vento #}}
+{{#                              ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ echo |> foo |> bar('baz') }}{{# hello #}}{{ /echo }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^ keyword.declaration.echo.begin.vento #}}
+{{#         ^^ keyword.operator.pipe.vento #}}
+{{#            ^^^ source.js.embedded.vento #}}
+{{#                ^^ keyword.operator.pipe.vento #}}
+{{#                   ^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                              ^^ punctuation.definition.tag.end.vento #}}
+{{#                                ^^^^^^^^^^^^^ text.plain.vento -comment #}}
+{{#                                             ^^ punctuation.definition.tag.begin.vento #}}
+{{#                                                ^ punctuation.section.tag.end.vento #}}
+{{#                                                 ^^^^ keyword.declaration.echo.end.vento #}}
+{{#                                                      ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ echo foo + 'bar' }}{{##}}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^ keyword.declaration.echo.begin.vento #}}
+{{#         ^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                     ^^ punctuation.definition.tag.end.vento #}}
+{{#                       ^^^^^^ comment.block.vento #}}
+
+    {{ export foo = 'bar' }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^ keyword.control.export.begin.vento #}}
+{{#           ^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                       ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- export foo |> bar('baz') -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^^^^ keyword.control.export.begin.vento #}}
+{{#            ^^^ source.js.embedded.vento #}}
+{{#                ^^ keyword.operator.pipe.vento #}}
+{{#                   ^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                              ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ /export }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^ punctuation.section.tag.end.vento #}}
+{{#    ^^^^^^^ keyword.control.export.end.vento #}}
+{{#            ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ export async function foo(bar = 'baz') }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^ keyword.control.export.begin.vento #}}
+{{#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                           ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ bar }}{{- /export -}}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^ source.js.embedded.vento #}}
+{{#        ^^ punctuation.definition.tag.end.vento #}}
+{{#          ^^^ punctuation.definition.tag.begin.vento #}}
+{{#              ^ punctuation.section.tag.end.vento #}}
+{{#              ^^^^^^^ keyword.control.export.end.vento #}}
+{{#                      ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ for [{foo: [bar = 'of }}']}] of [[{foo: ['}}']}]] }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^ keyword.control.loop.for.begin.vento #}}
+{{#        ^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                 ^^ keyword.operator.word #}}
+{{#                                    ^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                                      ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ /for }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^ punctuation.section.tag.end.vento #}}
+{{#    ^^^^ keyword.control.loop.for.end.vento #}}
+{{#         ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- async function foo -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                        ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{- /function -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^ punctuation.section.tag.end.vento #}}
+{{#     ^^^^^^^^^ keyword.declaration.function.end.vento #}}
+{{#               ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ function foo(bar = 'baz') }}{{ /function }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                              ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ if foo == 'bar' }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^ keyword.control.conditional.if.begin.vento #}}
+{{#       ^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                    ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- else if(bar == 'baz') -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^^^^^ keyword.control.conditional.elseif.vento #}}
+{{#             ^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                           ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ else -}}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^ keyword.control.conditional.else.vento #}}
+{{#         ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ /if }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^ punctuation.section.tag.end.vento #}}
+{{#    ^^^ keyword.control.conditional.if.end.vento #}}
+{{#        ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ import { default as foo } from './bar.vto' }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                               ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- import foo from './bar.vto' -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                 ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ include 'foo.vto' { bar: 'baz' } }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^^ keyword.control.include.vento #}}
+{{#            ^^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                     ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ include `${foo}.vto` |> bar() }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^^ keyword.control.include.vento #}}
+{{#            ^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                         ^^ keyword.operator.pipe.vento #}}
+{{#                            ^^^^^ source.js.embedded.vento #}}
+{{#                                  ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ layout 'foo.vto' { bar: 'baz'} }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^ keyword.control.layout.begin.vento #}}
+{{#           ^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                                   ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ /layout }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^ punctuation.section.tag.end.vento #}}
+{{#    ^^^^^^^ keyword.control.layout.end.vento #}}
+{{#            ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- layout 'foo.vto' |> bar() -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^^^^ keyword.control.layout.begin.vento #}}
+{{#            ^^^^^^^^^ source.js.embedded.vento #}}
+{{#                      ^^ keyword.operator.pipe.vento #}}
+{{#                         ^^^^^ source.js.embedded.vento #}}
+{{#                               ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{- /layout -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^ punctuation.section.tag.end.vento #}}
+{{#     ^^^^^^^ keyword.control.layout.end.vento #}}
+{{#             ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ set foo = 'bar' |> baz() }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^ keyword.declaration.set.begin.vento #}}
+{{#        ^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                    ^^ keyword.operator.pipe.vento #}}
+{{#                       ^^^^^ source.js.embedded.vento #}}
+{{#                             ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- set foo |> bar() -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^ keyword.declaration.set.begin.vento #}}
+{{#         ^^^ source.js.embedded.vento #}}
+{{#             ^^ keyword.operator.pipe.vento #}}
+{{#                ^^^^^ source.js.embedded.vento #}}
+{{#                      ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{- /set -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^ punctuation.section.tag.end.vento #}}
+{{#     ^^^^ keyword.declaration.set.end.vento #}}
+{{#          ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ 'foo' |> bar() }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^ source.js.embedded.vento #}}
+{{#          ^^ keyword.operator.pipe.vento #}}
+{{#             ^^^^^ source.js.embedded.vento #}}
+{{#                   ^^ punctuation.definition.tag.end.vento #}}
+
+    {{- await fetchThing() |> safe -}}
+{{# ^^^ punctuation.definition.tag.begin.vento #}}
+{{#     ^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                        ^^ keyword.operator.pipe.vento #}}
+{{#                           ^^^^ source.js.embedded.vento #}}
+{{#                                ^^^ punctuation.definition.tag.end.vento #}}
+
+    {{ __defaults + __env }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#    ^^^^^^^^^^ invalid.illegal.reserved.vento #}}
+{{#                 ^^^^^ invalid.illegal.reserved.vento #}}
+{{#                       ^^ punctuation.definition.tag.end.vento #}}
+
+    {{> __exports = 'foo' }}
+{{# ^^^ punctuation.definition.code.begin.vento #}}
+{{#     ^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#     ^^^^^^^^^ invalid.illegal.reserved.vento #}}
+{{#                       ^^ punctuation.definition.code.end.vento #}}
+
+    {{ /if x {{##}}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^ punctuation.section.tag.end.vento #}}
+{{#    ^^^ keyword.control.conditional.if.end.vento #}}
+{{#        ^ invalid.illegal.garbage.vento #}}
+{{#          ^^^^^^ comment.block.vento #}}
+
+    {{ foo bar |> baz }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^^^ keyword.control.unknown.begin.vento #}}
+{{#        ^^^ source.js.embedded.vento #}}
+{{#            ^^ keyword.operator.pipe.vento #}}
+{{#               ^^^ source.js.embedded.vento #}}
+{{#                   ^^ punctuation.definition.tag.end.vento #}}
+
+    {{ /foo }}
+{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{#    ^ punctuation.section.tag.end.vento #}}
+{{#    ^^^^ keyword.control.unknown.end.vento #}}
+{{#         ^^ punctuation.definition.tag.end.vento #}}

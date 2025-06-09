@@ -16,10 +16,19 @@ contexts:
 
   expression-begin:
   - meta_prepend: true
+  - meta_scope: source.js.embedded.vento
   - match: '(?=-?}})'
     pop: true
 
   expression-end:
   - meta_prepend: true
+  - meta_scope: source.js.embedded.vento
   - match: '(?=\|>|-?}})'
+    pop: true
+
+  literal-variable-base:
+  - meta_prepend: true
+  - meta_scope: source.js.embedded.vento
+  - match: '__(?:exports|pos|env|file|defaults|err)'
+    scope: invalid.illegal.reserved.vento
     pop: true

@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 # See http://www.sublimetext.com/docs/syntax.html
-name: Vento (Plain text)
+name: Plain text (Vento)
 scope: text.plain.vento
 version: 2
 extends: Packages/JavaScript/JavaScript.sublime-syntax
@@ -50,11 +50,12 @@ contexts:
     - include: tag_include
     - include: tag_layout
     - include: tag_set
+    - include: tag_unknown
     - include: tag_interpolation
 
   tag_echo:
   - match: '\becho\b'
-    scope: keyword.echo.vento
+    scope: keyword.declaration.echo.begin.vento
     push:
     - match: '(?!\s*\|>|\s*-?}})'
       push:
@@ -69,132 +70,61 @@ contexts:
         push:
         - match: '({{-?)\s*((/)echo)\s*(-?}})'
           captures:
-            1: punctuation.definition.tag.start.vento
-            2: keyword.control.vento meta.echo.end.vento
-            3: punctuation.declaration.tag.end.vento
+            1: punctuation.definition.tag.begin.vento
+            2: keyword.declaration.echo.end.vento
+            3: punctuation.section.tag.end.vento
             4: punctuation.definition.tag.end.vento
           pop: 4
-      - match: '\|>'
-        scope: keyword.operator.pipe.vento
-      - include: scope:source.js-expression-in-vento
+      - include: tag_opening_end_pipeable
 
   tag_export:
   - match: '\bexport\b'
-    scope: keyword.export.vento
-    push:
-    - match: '(\w+)\s+(=)'
-      captures:
-        1: variable.other.readwrite.vento
-        2: keyword.operator.assignment.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 3
-      - match: '\|>'
-        scope: keyword.operator.pipe.vento
-      - include: scope:source.js-expression-in-vento
-    - match: '(\w+)\s+(\|>)'
-      captures:
-        1: variable.other.readwrite.vento
-        2: keyword.operator.pipe.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 3
-      - match: '\|>'
-        scope: keyword.operator.pipe.vento
-      - include: scope:source.js-expression-in-vento
-    - match: '\s+((?:async\s+)?)(function)\s+(\w+)'
-      captures:
-        1: keyword.declaration.async.vento
-        2: keyword.declaration.function.vento
-        3: entity.name.function.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 2
-      - match: ''
-        push:
-        - include: scope:source.js#function-declaration-expect-parameters
-    - match: '\w+'
-      scope: variable.other.readwrite.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 3
-      - include: scope:source.js-expression-in-vento
+    scope: keyword.control.export.begin.vento
+    push: tag_opening_end_pipeable
   - match: '(/)export\b'
     captures:
-      0: keyword.control.vento meta.export.end.vento
-      1: punctuation.declaration.tag.end.vento
-    push:
-    - include: tag_closing_end
+      0: keyword.control.export.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
 
   tag_for:
   - match: '\bfor\b'
-    scope: keyword.control.loop.for.vento
+    scope: keyword.control.loop.for.begin.vento
     push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
     - match: 'of'
       scope: keyword.operator.word
-    - include: scope:source.js-expression-in-vento
-  - match: '/for\b'
+    - include: tag_opening_end
+  - match: '(/)for\b'
     captures:
-      0: keyword.control.vento meta.for.end.vento
-      1: punctuation.declaration.tag.end.vento
+      0: keyword.control.loop.for.end.vento
+      1: punctuation.section.tag.end.vento
     push:
     - include: tag_closing_end
 
   tag_function:
-  - match: '((?:async\s+)?)(function)\s+(\w+)'
+  - match: '(?=(?:async\s+)?function\b)'
+    push: tag_opening_end
+  - match: '(/)function\b'
     captures:
-      1: keyword.declaration.async.vento
-      2: keyword.declaration.function.vento
-      3: entity.name.function.vento
-    push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
-    - match: ''
-      push:
-      - include: scope:source.js#function-declaration-expect-parameters
-  - match: '/function\b'
-    captures:
-      0: keyword.control.vento meta.function.end.vento
-      1: punctuation.declaration.tag.end.vento
-    push:
-    - include: tag_closing_end
+      0: keyword.declaration.function.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
 
   tag_if:
   - match: '\bif\b'
-    scope: keyword.control.conditional.if.vento
-    push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
-    - include: scope:source.js-expression-in-vento
+    scope: keyword.control.conditional.if.begin.vento
+    push: tag_opening_end
   - match: 'else\s+if\b'
     scope: keyword.control.conditional.elseif.vento
-    push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
-    - include: scope:source.js-expression-in-vento
+    push: tag_opening_end
   - match: '\belse\b'
     scope: keyword.control.conditional.else.vento
-    push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
-    - include: scope:source.js-expression-in-vento
-  - match: '/if\b'
+    push: tag_opening_end
+  - match: '(/)if\b'
     captures:
-      0: keyword.control.vento meta.if.end.vento
-      1: punctuation.declaration.tag.end.vento
-    push:
-    - include: tag_closing_end
+      0: keyword.control.conditional.if.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
 
   tag_import:
   - match: '(?=\bimport\b)'
@@ -204,77 +134,64 @@ contexts:
       pop: 2
     - match: ''
       push:
-      - include: scope:source.js#import-statement
+      - meta_scope: source.js.embedded.vento
+      - match: ''
+        push:
+        - include: scope:source.js#import-statement
+        - match: ''
+          pop: 2
 
   tag_include:
   - match: '\binclude\b'
-    scope: keyword.include.vento
-    push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
-    - include: scope:source.js-expression-in-vento
-    - match: '\|>'
-      scope: keyword.operator.pipe.vento
-    - include: scope:source.js-expression-in-vento
+    scope: keyword.control.include.vento
+    push: tag_opening_end_pipeable
 
   tag_layout:
   - match: '\blayout\b'
-    scope: keyword.layout.vento
-    push:
-    - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
-      pop: 2
-    - include: scope:source.js-expression-in-vento
-    - match: '\|>'
-      scope: keyword.operator.pipe.vento
-    - include: scope:source.js-expression-in-vento
-  - match: '/layout\b'
+    scope: keyword.control.layout.begin.vento
+    push: tag_opening_end_pipeable
+  - match: '(/)layout\b'
     captures:
-      0: keyword.control.vento meta.layout.end.vento
-      1: punctuation.declaration.tag.end.vento
-    push:
-    - include: tag_closing_end
+      0: keyword.control.layout.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
 
   tag_set:
   - match: '\bset\b'
-    scope: keyword.set.vento
-    push:
-    - match: '(\w+)\s+(=)'
-      captures:
-        1: variable.other.readwrite.vento
-        2: keyword.operator.assignment.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 3
-      - match: '\|>'
-        scope: keyword.operator.pipe.vento
-      - include: scope:source.js-expression-in-vento
-    - match: '(\w+)\s+(\|>)'
-      captures:
-        1: variable.other.readwrite.vento
-        2: keyword.operator.pipe.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 3
-      - match: '\|>'
-        scope: keyword.operator.pipe.vento
-      - include: scope:source.js-expression-in-vento
-    - match: '\w+'
-      scope: variable.other.readwrite.vento
-      push:
-      - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
-        pop: 3
-      - include: scope:source.js-expression-in-vento
+    scope: keyword.declaration.set.begin.vento
+    push: tag_opening_end_pipeable
   - match: '(/)set\b'
     captures:
-      0: keyword.control.vento meta.set.end.vento
-      1: punctuation.declaration.tag.end.vento
-    push:
-    - include: tag_closing_end
+      0: keyword.declaration.set.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
+
+  tag_unknown:
+  - match: '\b(?!await\b)\w+\b(?=\s+[\w''"`\[{])'
+    scope: keyword.control.unknown.begin.vento
+    push: tag_opening_end_pipeable
+  - match: '(/)\w+\b'
+    captures:
+      0: keyword.control.unknown.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
+
+  tag_interpolation:
+  - match: ''
+    push: tag_opening_end_pipeable
+
+  # Some helpers to avoid excessive repetition
+
+  tag_opening_end:
+  - match: '-?}}'
+    scope: punctuation.definition.tag.end.vento
+    pop: 2
+  - include: scope:source.js-expression-in-vento
+
+  tag_opening_end_pipeable:
+  - match: '\|>'
+    scope: keyword.operator.pipe.vento
+  - include: tag_opening_end
 
   tag_closing_end:
   - match: '-?}}'
@@ -282,14 +199,5 @@ contexts:
     pop: 2
   - match: '\s+'
   - match: '\S'
-    scope: invalid.illegal.garbage
+    scope: invalid.illegal.garbage.vento
     pop: 2
-
-  tag_interpolation:
-  - match: '-?}}'
-    scope: punctuation.definition.tag.end.vento
-    pop: true
-  - include: scope:source.js-expression-in-vento
-  - match: '\|>'
-    scope: keyword.operator.pipe.vento
-  - include: scope:source.js-expression-in-vento
