@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{{ for ${1:key}, ${2:value} of ${3:sequence} }}
+	$4
+{{ /for }}
+]]></content>
+	<tabTrigger>for</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Iterate over arrays, dictionaries capturing the key and value</description>
+</snippet>

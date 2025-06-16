@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{{ layout "${1:file.vto}" }}
+	$2
+{{ /layout }}
+]]></content>
+	<tabTrigger>layout</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Render a content inside a layout</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+{{ include "${1:path}.vto" }}
+]]></content>
+	<tabTrigger>include</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Include a template</description>
+</snippet>

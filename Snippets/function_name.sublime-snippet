@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{{ function ${1:name} }}
+	$2
+{{ /function }}
+]]></content>
+	<tabTrigger>function</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Create a Vento function</description>
+</snippet>
