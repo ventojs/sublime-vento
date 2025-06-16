@@ -1,5 +1,3 @@
 {
-	"extensions": [
-		"vto"
-	],
+	"extensions": ["txt.vto"],
 }
