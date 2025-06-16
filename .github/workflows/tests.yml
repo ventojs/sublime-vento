@@ -1,0 +1,17 @@
+name: Syntax tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  syntax_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: SublimeText/syntax-test-action@v2
+      with:
+        build: latest
+        default_packages: master
