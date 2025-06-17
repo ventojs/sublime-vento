@@ -38,7 +38,7 @@ contexts:
 
   tag:
   - match: '{{-?'
-    scope: punctuation.definition.tag.begin.vento
+    scope: punctuation.definition.embedded.begin.vento
     push:
     - match: '\s+'
     - include: tag_echo
@@ -60,20 +60,20 @@ contexts:
     - match: '(?!\s*\|>|\s*-?}})'
       push:
       - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
+        scope: punctuation.definition.embedded.end.vento
         pop: 3
       - include: scope:source.js-expression-in-vento
     - match: ''
       push:
       - match: '-?}}'
-        scope: punctuation.definition.tag.end.vento
+        scope: punctuation.definition.embedded.end.vento
         push:
         - match: '({{-?)\s*((/)echo)\s*(-?}})'
           captures:
-            1: punctuation.definition.tag.begin.vento
+            1: punctuation.definition.embedded.begin.vento
             2: keyword.declaration.echo.end.vento
             3: punctuation.section.tag.end.vento
-            4: punctuation.definition.tag.end.vento
+            4: punctuation.definition.embedded.end.vento
           pop: 4
       - include: tag_opening_end_pipeable
 
@@ -130,7 +130,7 @@ contexts:
   - match: '(?=\bimport\b)'
     push:
     - match: '-?}}'
-      scope: punctuation.definition.tag.end.vento
+      scope: punctuation.definition.embedded.end.vento
       pop: 2
     - match: ''
       push:
@@ -184,7 +184,7 @@ contexts:
 
   tag_opening_end:
   - match: '-?}}'
-    scope: punctuation.definition.tag.end.vento
+    scope: punctuation.definition.embedded.end.vento
     pop: 2
   - include: scope:source.js-expression-in-vento
 
@@ -195,7 +195,7 @@ contexts:
 
   tag_closing_end:
   - match: '-?}}'
-    scope: punctuation.definition.tag.end.vento
+    scope: punctuation.definition.embedded.end.vento
     pop: 2
   - match: '\s+'
   - match: '\S'
