@@ -4,45 +4,45 @@
 {{# ^^^^ text.html.vento #}}
 
     {{ if foo == 'bar' }}
-{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^^ keyword.control.conditional.if.begin.vento #}}
 {{#       ^^^^^^^^^^^^ source.js.embedded.vento #}}
-{{#                    ^^ punctuation.definition.tag.end.vento #}}
+{{#                    ^^ punctuation.definition.embedded.end.vento #}}
 
     <input {{ 'hidden' }} type="text">
 {{# ^^^^^^ text.html.vento #}}
-{{#        ^^ punctuation.definition.tag.begin.vento #}}
+{{#        ^^ punctuation.definition.embedded.begin.vento #}}
 {{#           ^^^^^^^^ source.js.embedded.vento #}}
-{{#                    ^^ punctuation.definition.tag.end.vento #}}
+{{#                    ^^ punctuation.definition.embedded.end.vento #}}
 {{#                       ^^^^^^^^^^^ meta.attribute-with-value.html #}}
 
     <input type="{{ type }}">
 {{# ^^^^^^^^^^^^^ text.html.vento #}}
-{{#              ^^ punctuation.definition.tag.begin.vento #}}
+{{#              ^^ punctuation.definition.embedded.begin.vento #}}
 {{#                 ^^^^ source.js.embedded.vento #}}
-{{#                      ^^ punctuation.definition.tag.end.vento #}}
+{{#                      ^^ punctuation.definition.embedded.end.vento #}}
 {{#                        ^^ text.html.vento #}}
 
     {{ echo }}<br>{{ /echo }}
-{{# ^^ punctuation.definition.tag.begin.vento #}}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^^^^ keyword.declaration.echo.begin.vento #}}
-{{#         ^^ punctuation.definition.tag.end.vento #}}
+{{#         ^^ punctuation.definition.embedded.end.vento #}}
 {{#           ^^^^ text.html.vento -entity #}}
-{{#               ^^ punctuation.definition.tag.begin.vento #}}
+{{#               ^^ punctuation.definition.embedded.begin.vento #}}
 {{#                  ^ punctuation.section.tag.end.vento #}}
 {{#                  ^^^^^ keyword.declaration.echo.end.vento #}}
-{{#                        ^^ punctuation.definition.tag.end.vento #}}
+{{#                        ^^ punctuation.definition.embedded.end.vento #}}
 
     <!-- {{ foo }} -->
 {{# ^^^^^ comment.block.html #}}
-{{#      ^^ punctuation.definition.tag.begin.vento #}}
+{{#      ^^ punctuation.definition.embedded.begin.vento #}}
 {{#         ^^^ source.js.embedded.vento #}}
-{{#             ^^ punctuation.definition.tag.end.vento #}}
+{{#             ^^ punctuation.definition.embedded.end.vento #}}
 {{#                ^^^ comment.block.html #}}
 
     <![CDATA[foo {{ 'bar' }} baz]]>
 {{# ^^^^^^^^^^^^^ text.html.vento #}}
-{{#              ^^ punctuation.definition.tag.begin.vento #}}
+{{#              ^^ punctuation.definition.embedded.begin.vento #}}
 {{#                 ^^^^^ source.js.embedded.vento #}}
-{{#                       ^^ punctuation.definition.tag.end.vento #}}
+{{#                       ^^ punctuation.definition.embedded.end.vento #}}
 {{#                         ^^^^^^^ text.html.vento #}}
