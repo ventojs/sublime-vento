@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+{{ import { ${1:name} } from "${2:file.vto}" }}
+]]></content>
+	<tabTrigger>import</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Import a variable or function from other template</description>
+</snippet>

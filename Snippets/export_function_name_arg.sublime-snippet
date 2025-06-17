@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{{ export function ${1:name}(${2:arg}) }}
+	$3
+{{ /export }}
+]]></content>
+	<tabTrigger>export</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Create and export a Vento function</description>
+</snippet>

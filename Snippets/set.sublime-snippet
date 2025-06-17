@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+{{ set ${1:name} = ${2:value} }}
+]]></content>
+	<tabTrigger>set</tabTrigger>
+	<scope>(text.html.vento | text.plain.vento) - source.js</scope>
+	<description>Set a variable</description>
+</snippet>
