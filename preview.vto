@@ -1,0 +1,31 @@
+---
+title: Hello world
+draft: true
+drinks:
+- coffee
+- tea
+- water
+---
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>{{ title }}</title>
+</head>
+	{{> const name = 'John Doe' }}
+	<h1>Hello, {{ name }}</h1>
+
+	{{ if draft }}
+		<small>This is a draft</small>
+	{{ /if }}
+
+	{{ layout "article.vto" }}
+		{{ content }}
+	{{ /layout }}
+
+	<ul>
+		{{ for drink of drinks }}
+			<li>{{ drink |> toUpperCase() }}</li>
+		{{ /for }}
+	</ul>
+</html>
