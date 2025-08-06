@@ -94,6 +94,14 @@ contexts:
     - match: 'of'
       scope: keyword.operator.word
     - include: tag_opening_end
+  - match: 'continue\b'
+    scope: keyword.control.flow.loop.continue.vento
+    push:
+    - include: tag_closing_end
+  - match: 'break\b'
+    scope: keyword.control.flow.loop.break.vento
+    push:
+    - include: tag_closing_end
   - match: '(/)for\b'
     captures:
       0: keyword.control.loop.for.end.vento
