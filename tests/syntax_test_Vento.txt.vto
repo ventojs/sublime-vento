@@ -111,6 +111,14 @@
 {{#                                    ^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
 {{#                                                      ^^ punctuation.definition.embedded.end.vento #}}
 
+    {{ continue }}{{ break }}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
+{{#    ^^^^^^^^ keyword.control.flow.continue.vento #}}
+{{#             ^^ punctuation.definition.embedded.end.vento #}}
+{{#               ^^ punctuation.definition.embedded.begin.vento #}}
+{{#                  ^^^^^ keyword.control.flow.break.vento #}}
+{{#                        ^^ punctuation.definition.embedded.end.vento #}}
+
     {{ /for }}
 {{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^ punctuation.section.tag.end.vento #}}
