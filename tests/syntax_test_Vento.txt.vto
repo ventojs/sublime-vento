@@ -194,6 +194,17 @@
 {{#           ^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
 {{#                                   ^^ punctuation.definition.embedded.end.vento #}}
 
+    {{ slot foo }}bar{{ /slot }}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
+{{#    ^^^^ keyword.declaration.slot.begin.vento #}}
+{{#         ^^^ source.js.embedded.vento #}}
+{{#             ^^ punctuation.definition.embedded.end.vento #}}
+{{#               ^^^ text.plain.vento #}}
+{{#                  ^^ punctuation.definition.embedded.begin.vento #}}
+{{#                     ^ punctuation.section.tag.end.vento #}}
+{{#                      ^^^^ keyword.declaration.slot.end.vento #}}
+{{#                           ^^ punctuation.definition.embedded.end.vento #}}
+
     {{ /layout }}
 {{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^ punctuation.section.tag.end.vento #}}
