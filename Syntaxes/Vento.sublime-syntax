@@ -158,6 +158,14 @@ contexts:
   - match: '\blayout\b'
     scope: keyword.control.layout.begin.vento
     push: tag_opening_end_pipeable
+  - match: '\bslot\b'
+    scope: keyword.declaration.slot.begin.vento
+    push: tag_opening_end_pipeable
+  - match: '(/)slot\b'
+    captures:
+      0: keyword.declaration.slot.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
   - match: '(/)layout\b'
     captures:
       0: keyword.control.layout.end.vento
