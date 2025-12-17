@@ -50,6 +50,7 @@ contexts:
     - include: tag_include
     - include: tag_layout
     - include: tag_set
+    - include: tag_default
     - include: tag_unknown
     - include: tag_interpolation
 
@@ -179,6 +180,16 @@ contexts:
   - match: '(/)set\b'
     captures:
       0: keyword.declaration.set.end.vento
+      1: punctuation.section.tag.end.vento
+    push: tag_closing_end
+
+  tag_default:
+  - match: '\bdefault\b'
+    scope: keyword.declaration.default.begin.vento
+    push: tag_opening_end_pipeable
+  - match: '(/)default\b'
+    captures:
+      0: keyword.declaration.default.end.vento
       1: punctuation.section.tag.end.vento
     push: tag_closing_end
 

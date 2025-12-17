@@ -247,6 +247,28 @@
 {{#     ^^^^ keyword.declaration.set.end.vento #}}
 {{#          ^^^ punctuation.definition.embedded.end.vento #}}
 
+    {{ default foo |> trim() }}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
+{{#    ^^^^^^^ keyword.declaration.default.begin.vento #}}
+{{#            ^^^ source.js.embedded.vento #}}
+{{#                ^^ keyword.operator.pipe.vento #}}
+{{#                   ^^^^^^ source.js.embedded.vento #}}
+{{#                          ^^ punctuation.definition.embedded.end.vento #}}
+
+    {{- /default -}}
+{{# ^^^ punctuation.definition.embedded.begin.vento #}}
+{{#     ^ punctuation.section.tag.end.vento #}}
+{{#     ^^^^^^^^ keyword.declaration.default.end.vento #}}
+{{#              ^^^ punctuation.definition.embedded.end.vento #}}
+
+    {{ default foo = 'bar' |> baz() }}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
+{{#    ^^^^^^^ keyword.declaration.default.begin.vento #}}
+{{#            ^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                        ^^ keyword.operator.pipe.vento #}}
+{{#                           ^^^^^ source.js.embedded.vento #}}
+{{#                                 ^^ punctuation.definition.embedded.end.vento #}}
+
     {{ 'foo' |> bar() }}
 {{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^^^^^ source.js.embedded.vento #}}
