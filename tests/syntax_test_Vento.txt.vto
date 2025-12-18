@@ -269,6 +269,11 @@
 {{#                           ^^^^^ source.js.embedded.vento #}}
 {{#                                 ^^ punctuation.definition.embedded.end.vento #}}
 
+    {{ foo ? "bar" : 23 -}}
+{{# ^^ punctuation.definition.embedded.begin.vento #}}
+{{#    ^^^^^^^^^^^^^^^^ source.js.embedded.vento #}}
+{{#                     ^^^ punctuation.definition.embedded.end.vento #}}
+
     {{ 'foo' |> bar() }}
 {{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^^^^^ source.js.embedded.vento #}}
