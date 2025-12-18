@@ -4,7 +4,6 @@
 name: Plain text (Vento)
 scope: text.plain.vento
 version: 2
-extends: Packages/JavaScript/JavaScript.sublime-syntax
 extensions: [txt.vto]
 
 contexts:
@@ -34,7 +33,10 @@ contexts:
     - match: '-?}}'
       scope: punctuation.definition.code.end.vento
       pop: true
-    - include: scope:source.js-in-vento
+    - match: ''
+      push:
+      - meta_scope: source.js.embedded.vento
+      - include: scope:source.js-in-vento
 
   tag:
   - match: '{{-?'
@@ -52,7 +54,7 @@ contexts:
     - include: tag_set
     - include: tag_default
     - include: tag_unknown
-    - include: tag_interpolation
+    - include: tag_opening_end_pipeable
 
   tag_echo:
   - match: '\becho\b'
@@ -63,7 +65,11 @@ contexts:
       - match: '-?}}'
         scope: punctuation.definition.embedded.end.vento
         pop: 3
-      - include: scope:source.js-expression-in-vento
+      - match: ''
+        push:
+        - meta_scope: source.js.embedded.vento
+        - include: scope:source.js-expression-in-vento
+
     - match: ''
       push:
       - match: '-?}}'
@@ -203,17 +209,16 @@ contexts:
       1: punctuation.section.tag.end.vento
     push: tag_closing_end
 
-  tag_interpolation:
-  - match: ''
-    push: tag_opening_end_pipeable
-
   # Some helpers to avoid excessive repetition
 
   tag_opening_end:
   - match: '-?}}'
     scope: punctuation.definition.embedded.end.vento
     pop: 2
-  - include: scope:source.js-expression-in-vento
+  - match: ''
+    push:
+    - meta_scope: source.js.embedded.vento
+    - include: scope:source.js-expression-in-vento
 
   tag_opening_end_pipeable:
   - match: '\|>'

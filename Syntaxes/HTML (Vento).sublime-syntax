@@ -39,8 +39,19 @@ contexts:
   cdata-content:
   - meta_prepend: true
   - meta_include_prototype: false
-  - include: scope:text.plain.vento
+  - match: '(?={{)'
+    push:
+    - include: scope:text.plain.vento
 
   tag-attribute-value-content:
   - meta_prepend: true
-  - include: scope:text.plain.vento
+  - match: '(?={{)'
+    push:
+    - include: scope:text.plain.vento
+
+  comment-content:
+  - meta_prepend: true
+  - meta_include_prototype: false
+  - match: '(?={{)'
+    push:
+    - include: scope:text.plain.vento

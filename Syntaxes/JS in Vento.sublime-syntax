@@ -8,27 +8,28 @@ hidden: true
 extends: Packages/JavaScript/JavaScript.sublime-syntax
 
 contexts:
+  main:
+  - meta_prepend: true
+  - match: '(?=\|>|-?}})'
+    pop: true
+
   script:
   - meta_prepend: true
-  - meta_scope: source.js.embedded.vento
   - match: '(?=-?}})'
     pop: true
 
   prefix-operators:
   - meta_prepend: true
-  - meta_scope: source.js.embedded.vento
   - match: '(?=-?}})'
     pop: true
 
   binary-operators:
   - meta_prepend: true
-  - meta_scope: source.js.embedded.vento
   - match: '(?=-?}})'
     pop: true
 
   literal-variable-base:
   - meta_prepend: true
-  - meta_scope: source.js.embedded.vento
   - match: '__(?:exports|pos|env|file|defaults|err)'
     scope: invalid.illegal.reserved.vento
     pop: true
