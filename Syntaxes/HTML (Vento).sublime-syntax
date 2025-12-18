@@ -24,14 +24,14 @@ contexts:
   - meta_include_prototype: false
   - match: \s*(---)\s*\n
     captures:
-      0: meta.frontmatter.eleventy
-      1: punctuation.section.frontmatter.begin.eleventy
+      0: meta.frontmatter.vento
+      1: punctuation.section.frontmatter.begin.vento
     embed: scope:source.yaml
-    embed_scope: meta.frontmatter.eleventy source.yaml.embedded.eleventy
+    embed_scope: meta.frontmatter.vento source.yaml.embedded.vento
     escape: ^\s*(---)\s*$\n?
     escape_captures:
-      0: meta.frontmatter.eleventy
-      1: punctuation.section.frontmatter.end.eleventy
+      0: meta.frontmatter.vento
+      1: punctuation.section.frontmatter.end.vento
     pop: true
   - match: ''
     pop: true
