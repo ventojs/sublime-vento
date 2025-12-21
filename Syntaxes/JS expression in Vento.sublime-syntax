@@ -24,10 +24,10 @@ contexts:
 
   expression-end:
   - meta_prepend: true
+  - match: '(?=\w)'
+    pop: 2
   - match: ''
     pop: 1
-  - match: '(?=\|>|-?}})'
-    pop: true
 
   literal-variable-base:
   - meta_prepend: true
