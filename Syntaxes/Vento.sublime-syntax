@@ -22,7 +22,7 @@ contexts:
       scope: >
         comment.block.vento
         punctuation.definition.comment.end.vento
-      pop: true
+      pop: 2
     - match: '(?:[^-#]+|-(?!#}})|#(?!}}))'
       scope: comment.block.vento
 
