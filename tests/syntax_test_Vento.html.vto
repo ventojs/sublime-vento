@@ -23,6 +23,14 @@
 {{#                      ^^ punctuation.definition.embedded.end.vento #}}
 {{#                        ^^ text.html.vento #}}
 
+    <input type="{{ echo foo }}">
+{{# ^^^^^^^^^^^^^ text.html.vento #}}
+{{#              ^^ punctuation.definition.embedded.begin.vento #}}
+{{#                 ^^^^ keyword.declaration.echo.begin.vento #}}
+{{#                      ^^^ source.js.embedded.vento #}}
+{{#                          ^^ punctuation.definition.embedded.end.vento #}}
+{{#                            ^^ text.html.vento #}}
+
     {{ echo }}<br>{{ /echo }}
 {{# ^^ punctuation.definition.embedded.begin.vento #}}
 {{#    ^^^^ keyword.declaration.echo.begin.vento #}}
