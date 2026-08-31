@@ -64,7 +64,7 @@ contexts:
       push:
       - match: '-?}}'
         scope: punctuation.definition.embedded.end.vento
-        pop: 3
+        pop: 4
       - match: ''
         push:
         - meta_scope: source.js.embedded.vento
@@ -87,7 +87,7 @@ contexts:
   tag_export:
   - match: '\bexport\b'
     scope: keyword.control.export.begin.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
   - match: '(/)export\b'
     captures:
       0: keyword.control.export.end.vento
@@ -159,15 +159,15 @@ contexts:
   tag_include:
   - match: '\binclude\b'
     scope: keyword.control.include.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
 
   tag_layout:
   - match: '\blayout\b'
     scope: keyword.control.layout.begin.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
   - match: '\bslot\b'
     scope: keyword.declaration.slot.begin.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
   - match: '(/)slot\b'
     captures:
       0: keyword.declaration.slot.end.vento
@@ -182,7 +182,7 @@ contexts:
   tag_set:
   - match: '\bset\b'
     scope: keyword.declaration.set.begin.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
   - match: '(/)set\b'
     captures:
       0: keyword.declaration.set.end.vento
@@ -192,7 +192,7 @@ contexts:
   tag_default:
   - match: '\bdefault\b'
     scope: keyword.declaration.default.begin.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
   - match: '(/)default\b'
     captures:
       0: keyword.declaration.default.end.vento
@@ -202,7 +202,7 @@ contexts:
   tag_unknown:
   - match: '\b(?!await\b)\w+\b(?=\s+[\w''"`\[{])'
     scope: keyword.control.unknown.begin.vento
-    push: tag_opening_end_pipeable
+    set: tag_opening_end_pipeable
   - match: '(/)\w+\b'
     captures:
       0: keyword.control.unknown.end.vento
